@@ -1,0 +1,11 @@
+diff -urN aa/ots-0.4.2/doc/ots-docs.sgml ots-0.4.2/doc/ots-docs.sgml
+--- aa/ots-0.4.2/doc/ots-docs.sgml	2003-05-01 02:51:26.000000000 +0200
++++ ots-0.4.2/doc/ots-docs.sgml	2004-03-12 18:00:50.804695768 +0100
+@@ -37,6 +38,7 @@
+ 
+ </para>
+ </partintro>
++<chapter><title></title><para></para></chapter>
+ 
+ </part>
+ 
