@@ -1,12 +1,12 @@
 Summary:	Open Text Summarizer
 Summary(pl):	Otwarte narzêdzie do streszczania tekstu
 Name:		ots
-Version:	0.4.1
+Version:	0.4.2
 Release:	1
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
-# Source0-md5:	f5768210dfcb4c2afade80803877145c
+# Source0-md5:	bb02a56a3bf2d5ebf9ffd064992d0ae4
 URL:		http://libots.sourceforge.net/
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk-doc >= 0.9
