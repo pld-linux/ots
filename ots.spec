@@ -7,6 +7,7 @@ License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
 # Source0-md5:	bb02a56a3bf2d5ebf9ffd064992d0ae4
+Patch0:		%{name}-docs.patch
 URL:		http://libots.sourceforge.net/
 BuildRequires:	glib2-devel >= 2.0
 BuildRequires:	gtk-doc >= 0.9
@@ -42,7 +43,7 @@ angielski i hebrajski.
 Summary:	Header files for ots library
 Summary(pl):	Pliki nag³ówkowe biblioteki ots
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 2.0
 Requires:	gtk-doc-common
 Requires:	libxml2-devel >= 2.4.23
@@ -57,7 +58,7 @@ Pliki nag³ówkowe biblioteki ots.
 Summary:	Static ots library
 Summary(pl):	Statyczna biblioteka ots
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ots library.
@@ -67,9 +68,11 @@ Statyczna biblioteka ots.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %configure \
+	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/libots
 
 # hack for proper linking - remove when in sources
