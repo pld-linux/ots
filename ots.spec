@@ -71,6 +71,7 @@ Statyczna biblioteka ots.
 %patch0 -p1
 
 %build
+cp -f /usr/share/automake/config.sub .
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/libots
