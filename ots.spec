@@ -2,7 +2,7 @@ Summary:	Open Text Summarizer
 Summary(pl):	Otwarte narzêdzie do streszczania tekstu
 Name:		ots
 Version:	0.4.2
-Release:	1
+Release:	2
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
@@ -10,13 +10,13 @@ Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
 Patch0:		%{name}-docs.patch
 Patch1:		%{name}-gcc4.patch
 URL:		http://libots.sourceforge.net/
-BuildRequires:	glib2-devel >= 2.0
-BuildRequires:	gtk-doc >= 0.9
-BuildRequires:	libxml2-devel >= 2.4.23
+BuildRequires:	glib2-devel >= 1:2.12.0
+BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
-Requires:	glib2 >= 2.0
-Requires:	libxml2 >= 2.4.23
+Requires:	glib2 >= 1:2.12.0
+Requires:	libxml2 >= 1:2.6.26
 Requires:	popt >= 1.5
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -45,9 +45,9 @@ Summary:	Header files for ots library
 Summary(pl):	Pliki nag³ówkowe biblioteki ots
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2-devel >= 2.0
+Requires:	glib2-devel >= 1:2.12.0
 Requires:	gtk-doc-common
-Requires:	libxml2-devel >= 2.4.23
+Requires:	libxml2-devel >= 1:2.6.26
 
 %description devel
 Header files for ots library.
@@ -74,6 +74,7 @@ Statyczna biblioteka ots.
 
 %build
 cp -f /usr/share/automake/config.sub .
+LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 %configure \
 	--enable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/libots
