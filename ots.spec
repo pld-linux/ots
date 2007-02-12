@@ -1,5 +1,5 @@
 Summary:	Open Text Summarizer
-Summary(pl):	Otwarte narzÍdzie do streszczania tekstu
+Summary(pl.UTF-8):   Otwarte narzƒôdzie do streszczania tekstu
 Name:		ots
 Version:	0.4.2
 Release:	2
@@ -30,19 +30,19 @@ HTML form where the important sentences are highlighted in red. The
 program is multi lingual and work with UTF-8 code; at the moment only
 English and Hebrew are supported.
 
-%description -l pl
-OTS (Open Text Summarizer) to wolnodostÍpne narzÍdzie do streszczania
-tekstÛw. Program czyta tekst i decyduje, ktÛre zdania s± waøne, a
-ktÛre nie.
+%description -l pl.UTF-8
+OTS (Open Text Summarizer) to wolnodostƒôpne narzƒôdzie do streszczania
+tekst√≥w. Program czyta tekst i decyduje, kt√≥re zdania sƒÖ wa≈ºne, a
+kt√≥re nie.
 
-Program moøe wypisaÊ streszczenie w formacie tekstowym lub w postaci
-HTML, gdzie waøne zdania s± oznaczone na czerwono. Program jest
-wielojÍzyczny i dzia≥a z kodem UTF-8; aktualnie obs≥ugiwane s± tylko
+Program mo≈ºe wypisaƒá streszczenie w formacie tekstowym lub w postaci
+HTML, gdzie wa≈ºne zdania sƒÖ oznaczone na czerwono. Program jest
+wielojƒôzyczny i dzia≈Ça z kodem UTF-8; aktualnie obs≈Çugiwane sƒÖ tylko
 angielski i hebrajski.
 
 %package devel
 Summary:	Header files for ots library
-Summary(pl):	Pliki nag≥Ûwkowe biblioteki ots
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe biblioteki ots
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.0
@@ -52,19 +52,19 @@ Requires:	libxml2-devel >= 1:2.6.26
 %description devel
 Header files for ots library.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe biblioteki ots.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe biblioteki ots.
 
 %package static
 Summary:	Static ots library
-Summary(pl):	Statyczna biblioteka ots
+Summary(pl.UTF-8):   Statyczna biblioteka ots
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static ots library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka ots.
 
 %prep
