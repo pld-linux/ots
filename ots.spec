@@ -1,5 +1,5 @@
 Summary:	Open Text Summarizer
-Summary(pl.UTF-8):   Otwarte narzędzie do streszczania tekstu
+Summary(pl.UTF-8):	Otwarte narzędzie do streszczania tekstu
 Name:		ots
 Version:	0.4.2
 Release:	2
@@ -42,7 +42,7 @@ angielski i hebrajski.
 
 %package devel
 Summary:	Header files for ots library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki ots
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki ots
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.0
@@ -57,7 +57,7 @@ Pliki nagłówkowe biblioteki ots.
 
 %package static
 Summary:	Static ots library
-Summary(pl.UTF-8):   Statyczna biblioteka ots
+Summary(pl.UTF-8):	Statyczna biblioteka ots
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
