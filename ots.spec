@@ -80,7 +80,7 @@ LDFLAGS="%{rpmldflags} -Wl,--as-needed"
 	--with-html-dir=%{_gtkdocdir}/libots
 
 # hack for proper linking - remove when in sources
-%{__make} \
+%{__make} -j1 \
 	libots_1_la_LIBADD="\$(OTS_LIBS)"
 
 %install
