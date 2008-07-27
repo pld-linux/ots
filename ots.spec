@@ -2,7 +2,7 @@ Summary:	Open Text Summarizer
 Summary(pl.UTF-8):	Otwarte narzędzie do streszczania tekstu
 Name:		ots
 Version:	0.4.2
-Release:	2
+Release:	3
 License:	GPL
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
