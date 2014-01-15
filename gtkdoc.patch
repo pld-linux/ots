@@ -1,0 +1,8 @@
+--- ots-0.5.0/doc/Makefile.am.orig	2007-04-08 18:21:30.000000000 +0200
++++ ots-0.5.0/doc/Makefile.am	2014-01-15 18:26:28.297013384 +0100
+@@ -41,4 +41,4 @@ GTKDOC_CFLAGS = -I$(top_srcdir)
+ GTKDOC_LIBS =
+ 
+ 
+-include $(top_srcdir)/gtk-doc.make
++#include $(datadir)/gtk-doc/data/gtk-doc.make
