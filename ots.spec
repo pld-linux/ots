@@ -1,17 +1,20 @@
 Summary:	Open Text Summarizer
 Summary(pl.UTF-8):	Otwarte narzędzie do streszczania tekstu
 Name:		ots
-Version:	0.4.2
-Release:	3
+Version:	0.5.0
+Release:	1
 License:	GPL
 Group:		Libraries
-Source0:	http://dl.sourceforge.net/libots/%{name}-%{version}.tar.gz
-# Source0-md5:	bb02a56a3bf2d5ebf9ffd064992d0ae4
-Patch0:		%{name}-docs.patch
-Patch1:		%{name}-gcc4.patch
+Source0:	http://downloads.sourceforge.net/libots/%{name}-%{version}.tar.gz
+# Source0-md5:	1e140a4bf9d720b4339a5c2bdf4976e8
+Patch0:		dic.patch
+Patch1:		gtkdoc.patch
 URL:		http://libots.sourceforge.net/
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	glib2-devel >= 1:2.12.0
 BuildRequires:	gtk-doc >= 1.6
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.6.26
 BuildRequires:	pkgconfig
 BuildRequires:	popt-devel >= 1.5
@@ -73,15 +76,17 @@ Statyczna biblioteka ots.
 %patch1 -p1
 
 %build
-cp -f /usr/share/automake/config.sub .
-LDFLAGS="%{rpmldflags} -Wl,--as-needed"
+%{__libtoolize}
+%{__aclocal}
+%{__autoconf}
+%{__autoheader}
+%{__automake}
+# documentation build fails
 %configure \
-	--enable-gtk-doc \
+	--disable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/libots
 
-# hack for proper linking - remove when in sources
-%{__make} -j1 \
-	libots_1_la_LIBADD="\$(OTS_LIBS)"
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -100,8 +105,9 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/ots
 %attr(755,root,root) %{_libdir}/lib*.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
 %{_datadir}/%{name}
-%{_mandir}/man1/ots.1*
+#%{_mandir}/man1/ots.1*
 
 %files devel
 %defattr(644,root,root,755)
@@ -109,7 +115,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/lib*.la
 %{_includedir}/libots*
 %{_pkgconfigdir}/*.pc
-%{_gtkdocdir}/libots
+#%{_gtkdocdir}/libots
 
 %files static
 %defattr(644,root,root,755)
