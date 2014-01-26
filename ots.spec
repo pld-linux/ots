@@ -86,7 +86,7 @@ Statyczna biblioteka ots.
 	--disable-gtk-doc \
 	--with-html-dir=%{_gtkdocdir}/libots
 
-%{__make}
+%{__make} -j1
 
 %install
 rm -rf $RPM_BUILD_ROOT
