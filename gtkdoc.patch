@@ -1,8 +1,54 @@
---- ots-0.5.0/doc/Makefile.am.orig	2007-04-08 18:21:30.000000000 +0200
-+++ ots-0.5.0/doc/Makefile.am	2014-01-15 18:26:28.297013384 +0100
-@@ -41,4 +41,4 @@ GTKDOC_CFLAGS = -I$(top_srcdir)
- GTKDOC_LIBS =
+--- ots-0.5.0/configure.in.orig	2007-04-08 20:12:42.000000000 +0200
++++ ots-0.5.0/configure.in	2016-05-15 16:13:58.673148022 +0200
+@@ -129,27 +129,8 @@
  
+ AC_CHECK_PROG(GTKDOC, gtkdoc-mkdb, true, false)
  
--include $(top_srcdir)/gtk-doc.make
-+#include $(datadir)/gtk-doc/data/gtk-doc.make
+-gtk_doc_min_version=0.9
+ if $GTKDOC ; then 
+-    gtk_doc_version=`gtkdoc-mkdb --version`
+-    AC_MSG_CHECKING([gtk-doc version ($gtk_doc_version) >= $gtk_doc_min_version])
+-
+-    IFS="${IFS= 	}"; gtk_save_IFS="$IFS"; IFS="."
+-    set $gtk_doc_version
+-    for min in $gtk_doc_min_version ; do
+-        cur=$1; shift
+-        if test -z $min ; then break; fi
+-        if test -z $cur ; then GTKDOC=false; break; fi
+-        if test $cur -gt $min ; then break ; fi
+-        if test $cur -lt $min ; then GTKDOC=false; break ; fi
+-    done
+-    IFS="$gtk_save_IFS"
+-
+-    if $GTKDOC ; then
+-      AC_MSG_RESULT(yes)
+-   else
+-      AC_MSG_RESULT(no)
+-   fi
++GTK_DOC_CHECK([0.9])
+ fi
+ 
+ AC_CHECK_PROG(DB2HTML, db2html, true, false)
+--- ots-0.5.0/doc/ots-docs.sgml.orig	2007-04-08 18:15:32.000000000 +0200
++++ ots-0.5.0/doc/ots-docs.sgml	2016-05-15 17:35:07.602943704 +0200
+@@ -1,11 +1,13 @@
+-<!doctype book PUBLIC "-//OASIS//DTD DocBook V3.1//EN" [
+-	<!notation PNG system "PNG">
+-	<!entity % local.notation.class "| PNG">
++<!DOCTYPE book PUBLIC "-//OASIS//DTD DocBook V4.1.2//EN"
++ "http://www.oasis-open.org/docbook/xml/4.1.2/docbookx.dtd"
++[
++	<!NOTATION PNG SYSTEM "PNG">
++	<!ENTITY % local.notation.class "| PNG">
+ 
+-	<!entity hash "#">
+-	<!entity percent "%">
+-	<!entity ObjectIndex	SYSTEM "sgml/object_index.sgml">
+-	<!entity TreeIndex	SYSTEM "sgml/tree_index.sgml">
++	<!ENTITY hash "#">
++	<!-- !ENTITY percent "%" -->
++	<!ENTITY ObjectIndex	SYSTEM "sgml/object_index.sgml">
++	<!ENTITY TreeIndex	SYSTEM "sgml/tree_index.sgml">
+ ]>
+ 
+ <book id="index">

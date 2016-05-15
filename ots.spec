@@ -1,9 +1,14 @@
+#
+# Conditional build:
+%bcond_without	apidocs	 	# gtk-doc API documentation
+%bcond_without	static_libs	# static library
+#
 Summary:	Open Text Summarizer
 Summary(pl.UTF-8):	Otwarte narzędzie do streszczania tekstu
 Name:		ots
 Version:	0.5.0
-Release:	1
-License:	GPL
+Release:	2
+License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libots/%{name}-%{version}.tar.gz
 # Source0-md5:	1e140a4bf9d720b4339a5c2bdf4976e8
@@ -49,7 +54,6 @@ Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki ots
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2-devel >= 1:2.12.0
-Requires:	gtk-doc-common
 Requires:	libxml2-devel >= 1:2.6.26
 
 %description devel
@@ -70,20 +74,34 @@ Static ots library.
 %description static -l pl.UTF-8
 Statyczna biblioteka ots.
 
+%package apidocs
+Summary:	API documentation for ots library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki ots
+Group:		Documentation
+Requires:	gtk-doc-common
+Conflicts:	ots-devel < 0.5.0-2
+
+%description apidocs
+API documentation for ots library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki ots.
+
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
 
 %build
+%{__gtkdocize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoconf}
 %{__autoheader}
 %{__automake}
-# documentation build fails
 %configure \
-	--disable-gtk-doc \
+	%{?with_apidocs:--enable-gtk-doc} \
+	%{!?with_static_libs:--disable-static} \
 	--with-html-dir=%{_gtkdocdir}/libots
 
 %{__make} -j1
@@ -93,6 +111,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
+
+# obsoleted by pkg-config
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libots-1.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -104,19 +125,24 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README TODO
 %attr(755,root,root) %{_bindir}/ots
-%attr(755,root,root) %{_libdir}/lib*.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/lib*.so.0
+%attr(755,root,root) %{_libdir}/libots-1.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libots-1.so.0
 %{_datadir}/%{name}
-#%{_mandir}/man1/ots.1*
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/libots*
-%{_pkgconfigdir}/*.pc
-#%{_gtkdocdir}/libots
+%attr(755,root,root) %{_libdir}/libots-1.so
+%{_includedir}/libots-1
+%{_pkgconfigdir}/libots-1.pc
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libots-1.a
+%endif
+
+%if %{with apidocs}
+%files apidocs
+%defattr(644,root,root,755)
+%{_gtkdocdir}/libots
+%endif
