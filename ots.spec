@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs	 	# gtk-doc API documentation
 %bcond_without	static_libs	# static library
-#
+
 Summary:	Open Text Summarizer
 Summary(pl.UTF-8):	Otwarte narzędzie do streszczania tekstu
 Name:		ots
 Version:	0.5.0
-Release:	2
+Release:	3
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://downloads.sourceforge.net/libots/%{name}-%{version}.tar.gz
@@ -80,6 +80,9 @@ Summary(pl.UTF-8):	Dokumentacja API biblioteki ots
 Group:		Documentation
 Requires:	gtk-doc-common
 Conflicts:	ots-devel < 0.5.0-2
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API documentation for ots library.
