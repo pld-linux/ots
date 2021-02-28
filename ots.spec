@@ -80,9 +80,7 @@ Summary(pl.UTF-8):	Dokumentacja API biblioteki ots
 Group:		Documentation
 Requires:	gtk-doc-common
 Conflicts:	ots-devel < 0.5.0-2
-%if "%{_rpmversion}" >= "5"
 BuildArch:	noarch
-%endif
 
 %description apidocs
 API documentation for ots library.
